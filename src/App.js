@@ -96,6 +96,7 @@ class App extends Component {
   }
  
   render() {
+    const titleImgClass = "title-img";
     const buttonClass = "same-line";
     const marginClass = "button-margin";
     const dropdownItemClass = "main-dropdown-items";
@@ -107,7 +108,7 @@ class App extends Component {
     return (
       <>
         {/*Title */}
-        <img src={ titleImg } alt=""></img>
+        <img src={ titleImg } className={titleImgClass} alt=""></img>
         <div className={visualizerContainer}>
           {/*Row of Sort Buttons */}
           <div className={buttonClass}>
