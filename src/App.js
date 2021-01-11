@@ -156,7 +156,14 @@ class App extends Component {
           <Button variant="info" className={marginClass} onClick={this.displayArr}>Generate Array</Button>{' '}
           {/*Reset Button */}
           <Button variant="primary" className={marginClass} onClick={ () => {
-            this.setState({sortArray : new Array(this.state.numbars).fill(0)});
+            this.setState({
+              sortArray : new Array(this.state.numbars).fill(0),
+              visibleInsertionSort : false,
+              visibleQuickSort : false,
+              visibleBubbleSort : false,
+              visibleHeapSort : false,
+              visibleSelectionSort : false
+            });
             this.updateIsRunning(false);
           }}>Reset</Button>
          
