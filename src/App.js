@@ -101,7 +101,7 @@ class App extends Component {
     const sliderClass = "slider-class";
     const visualizerContainer = "visualizer-container"
     const formatms = value => value + "ms";
-    const sliderLabel = {1 : "", 500 : "Animation Speed", 1000 : ""};
+    const sliderLabel = {1 : "", 500 : "Animation Delay", 1000 : ""};
     return (
       <>
         {/*Title */}
