@@ -25,6 +25,7 @@ import titleImg from "./Components/Photos/TitlePhoto.png";
 class App extends Component {
   state = {
     sortArray: [0,0,0,0,0,0,0,0,0,0],
+    originalState: [],
     numbars: 10,
     delay: 100,
     visible10: true,
@@ -45,7 +46,8 @@ class App extends Component {
         temp[i] = (Math.round(Math.random() * (400 - 20) + 20));
     }
     this.setState({
-        sortArray: temp
+        sortArray: temp,
+        originalState: temp
     })
   }
 
@@ -120,6 +122,7 @@ class App extends Component {
             <span className={dropdownItemClass}>
               <Button onClick={() => {
                 this.setState({sortArray: new Array(10).fill(0), numbars: 10, visible10: true, visible20: false, visible50: false, visible100: false});
+                this.updateIsRunning(false);
               }}>
                 10
               </Button>
@@ -127,6 +130,7 @@ class App extends Component {
             <span className={dropdownItemClass}>
               <Button onClick={() => {
                 this.setState({sortArray: new Array(20).fill(0), numbars: 20, visible10: false, visible20: true, visible50: false, visible100: false});
+                this.updateIsRunning(false);
               }}>
                 20
               </Button>
@@ -134,6 +138,7 @@ class App extends Component {
             <span className={dropdownItemClass}>
               <Button onClick={() => {
                 this.setState({sortArray: new Array(50).fill(0), numbars: 50, visible10: false, visible20: false, visible50: true, visible100: false});
+                this.updateIsRunning(false);
                 }}>
                 50
               </Button>
@@ -141,6 +146,7 @@ class App extends Component {
             <span className={dropdownItemClass}>
               <Button onClick={() => {
                 this.setState({sortArray: new Array(100).fill(0), numbars: 100, visible10: false, visible20: false, visible50: false, visible100: true});
+                this.updateIsRunning(false);
                 }}>
                 100
               </Button>
@@ -153,11 +159,14 @@ class App extends Component {
           {this.state.visible100 ? <Bars100 sortArray ={this.state.sortArray}/> : null}
           
           {/*Gen array button */}
-          <Button variant="info" className={marginClass} onClick={this.displayArr}>Generate Array</Button>{' '}
+          <Button variant="info" className={marginClass} onClick={ () => {
+            this.displayArr();
+            this.updateIsRunning(false);
+            }}>Generate Array</Button>{' '}
           {/*Reset Button */}
           <Button variant="primary" className={marginClass} onClick={ () => {
             this.setState({
-              sortArray : new Array(this.state.numbars).fill(0),
+              sortArray : this.state.originalState,
               visibleInsertionSort : false,
               visibleQuickSort : false,
               visibleBubbleSort : false,
